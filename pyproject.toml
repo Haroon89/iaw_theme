@@ -1,0 +1,15 @@
+[project]
+name = "iaw_theme"
+authors = [{ name = "Infinite App Works" }]
+description = "Saudagar desk theme for Frappe v16 — colours, fonts, radii, shadows. CSS and fonts only."
+requires-python = ">=3.10"
+readme = "README.md"
+dynamic = ["version"]
+dependencies = []
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.bench.frappe-dependencies]
+frappe = ">=16.0.0-dev,<17"

@@ -1,0 +1,302 @@
+/*
+ * iaw_theme — the Saudagar desk theme for stock Frappe v16.
+ *
+ * Look and feel only: colours, fonts, radii, shadows, control styling, dark
+ * theme. No layout changes, no JS. Every value comes from the Saudagar design
+ * tokens (saudagar-deploy docs/design-system/tokens/tokens.css); the token
+ * name is noted beside each mapping.
+ *
+ * Frappe v16 renders the theme on <html data-theme="light|dark"> from the
+ * user's desk_theme, so light values go on :root,[data-theme="light"] and
+ * dark overrides on [data-theme="dark"] — the selectors the desk bundle
+ * itself uses (verified against frappe 16.34.0 desk.bundle.*.css).
+ */
+
+/* ---- self-hosted fonts (variable woff2, SIL OFL, licences in licenses/) -- */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url("../fonts/plus-jakarta-sans-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Baloo Bhaijaan 2";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("../fonts/baloo-bhaijaan-2-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Baloo Bhaijaan 2";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("../fonts/baloo-bhaijaan-2-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Noto Nastaliq Urdu";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/noto-nastaliq-urdu-arabic.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+
+@font-face {
+  font-family: "Noto Nastaliq Urdu";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../fonts/noto-nastaliq-urdu-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ---- light theme: Frappe variable → Saudagar token ----------------------- */
+:root, [data-theme="light"] {
+  /* surfaces */
+  --bg-color: #f7f3ec;            /* canvas */
+  --fg-color: #fffdf9;            /* surface */
+  --card-bg: #fffdf9;             /* surface */
+  --modal-bg: #fffdf9;            /* surface */
+  --navbar-bg: #fffdf9;           /* surface */
+  --control-bg: #f1ebe1;          /* surface-sunken */
+  --control-bg-on-gray: #f5f0e7;  /* surface-hover */
+  --disabled-control-bg: #f1ebe1; /* surface-sunken */
+  --skeleton-bg: #f1ebe1;         /* surface-sunken */
+  --toast-bg: #fffdf9;            /* surface */
+
+  /* text */
+  --text-color: #0f172a;          /* ink */
+  --text-neutral: #0f172a;        /* ink */
+  --text-muted: #475569;          /* ink-soft */
+  --text-light: #5c687a;          /* ink-muted */
+
+  /* brand */
+  --primary: #0f766e;             /* brand */
+  --primary-color: #0f766e;       /* brand */
+  --btn-primary: #0f766e;         /* brand — background of .btn-primary (stock: gray-900) */
+  --invert-neutral: #0f4c46;      /* brand-strong — pressed primary (stock: neutral-black) */
+  --checkbox-color: #ffffff;      /* on-brand — check mark on the teal gradient */
+
+  /* lines */
+  --border-color: #e7dfd2;        /* line */
+  --table-border-color: #e7dfd2;  /* line */
+  --divider-color: #e7dfd2;       /* line */
+  --switch-bg: #e7dfd2;           /* line */
+
+  /* sidebar */
+  --sidebar-hover-color: #f5f0e7;  /* surface-hover */
+  --sidebar-select-color: #e0f2ee; /* brand-soft */
+  --sidebar-active-color: #0f4c46; /* brand-strong */
+  --sidebar-border-color: #e7dfd2; /* line */
+
+  /* charts */
+  --charts-label-color: #475569;   /* ink-soft */
+  --charts-axis-line-color: #e7dfd2; /* line */
+  --charts-tooltip-bg: #fffdf9;    /* surface */
+
+  /* type (stock: Inter stack, 14px base) */
+  --font-stack: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --font-family-sans-serif: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --text-base: 16px;
+  --text-md: 16px;
+
+  /* shape and depth (stock radii 8/10/12 → tokens 8/12/18) */
+  --border-radius-md: 12px;        /* radius-md */
+  --border-radius-lg: 18px;        /* radius-lg */
+  --shadow-sm: 0 1px 2px #3b2a1414, 0 1px 3px #3b2a140d;                 /* shadow-sm */
+  --shadow-md: 0 2px 4px #3b2a140f, 0 8px 20px -4px #3b2a141f;           /* shadow-md */
+  --focus-default: 0 0 0 2px #fffdf9, 0 0 0 5px #0f766e;                 /* focus-ring */
+}
+
+/* ---- dark theme: same variables, dark token values ------------------------ */
+[data-theme="dark"] {
+  /* surfaces */
+  --bg-color: #0d1615;            /* canvas */
+  --fg-color: #142120;            /* surface */
+  --card-bg: #142120;             /* surface */
+  --modal-bg: #142120;            /* surface */
+  --navbar-bg: #142120;           /* surface (stock has no dark navbar override) */
+  --control-bg: #0a1211;          /* surface-sunken */
+  --control-bg-on-gray: #1a2a28;  /* surface-hover */
+  --disabled-control-bg: #0a1211; /* surface-sunken */
+  --skeleton-bg: #0a1211;         /* surface-sunken */
+  --toast-bg: #142120;            /* surface */
+
+  /* text */
+  --text-color: #eef4f2;          /* ink */
+  --text-neutral: #eef4f2;        /* ink */
+  --text-muted: #bccac6;          /* ink-soft */
+  --text-light: #95a6a2;          /* ink-muted */
+
+  /* brand (dark token values, brighter for contrast on dark) */
+  --primary: #3cc3b0;             /* brand */
+  --primary-color: #3cc3b0;       /* brand */
+  --btn-primary: #3cc3b0;         /* brand — background of .btn-primary */
+  --invert-neutral: #86e0d2;      /* brand-strong — pressed primary */
+
+  /* lines */
+  --border-color: #263633;        /* line */
+  --table-border-color: #263633;  /* line */
+  --divider-color: #263633;       /* line */
+  --switch-bg: #263633;           /* line */
+
+  /* sidebar */
+  --sidebar-hover-color: #1a2a28;  /* surface-hover */
+  --sidebar-select-color: #113a35; /* brand-soft */
+  --sidebar-active-color: #86e0d2; /* brand-strong */
+  --sidebar-border-color: #263633; /* line */
+
+  /* charts */
+  --charts-label-color: #bccac6;   /* ink-soft */
+  --charts-axis-line-color: #263633; /* line */
+  --charts-tooltip-bg: #142120;    /* surface */
+
+  /* shape and depth */
+  --shadow-sm: 0 1px 2px #00000066;                    /* shadow-sm */
+  --shadow-md: 0 8px 20px -4px #000000a6;              /* shadow-md */
+  --focus-default: 0 0 0 2px #142120, 0 0 0 5px #3cc3b0; /* focus-ring */
+
+  /* targeted: the checkbox gradient inverts to white in stock dark; keep it
+     on --primary and put an on-brand check mark on it */
+  --checkbox-gradient: linear-gradient(180deg, var(--primary) -124.51%, var(--primary) 100%);
+  --checkbox-color: #03201c;      /* on-brand */
+}
+
+/* ---- targeted selectors (only where no variable exists) ------------------- */
+
+/* primary buttons keep white text on teal in light; stock dark inverts
+   --primary to white, so pin the on-brand dark ink there */
+.btn-primary {
+  color: #ffffff;                 /* on-brand */
+}
+
+[data-theme="dark"] .btn-primary {
+  color: #03201c;                 /* on-brand */
+}
+
+/* the website/login bundle styles .btn-primary with literals (no variable to
+   map), so pin the same token values there; also gives the desk a teal hover */
+.btn-primary {
+  background-color: #0f766e;      /* brand */
+  border-color: #0f766e;          /* brand */
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:focus-visible {
+  background-color: #0f4c46;      /* brand-strong */
+  border-color: #0f4c46;          /* brand-strong */
+}
+
+[data-theme="dark"] .btn-primary {
+  background-color: #3cc3b0;      /* brand */
+  border-color: #3cc3b0;          /* brand */
+}
+
+[data-theme="dark"] .btn-primary:hover,
+[data-theme="dark"] .btn-primary:focus,
+[data-theme="dark"] .btn-primary:focus-visible {
+  background-color: #86e0d2;      /* brand-strong */
+  border-color: #86e0d2;          /* brand-strong */
+}
+
+/* the login page's Continue / send-link buttons are .btn-login with a literal
+   dark fill (no theme variable); same selector shape as the login bundle so
+   ours wins by load order (and by specificity in the dark prefix) */
+.for-login .page-card .page-card-actions .btn-login,
+.for-forgot .page-card .page-card-actions .btn-login,
+.for-login-with-email-link .page-card .page-card-actions .btn-login,
+.for-signup .page-card .page-card-actions .btn-login,
+.for-email-login .page-card .page-card-actions .btn-login {
+  background-color: #0f766e;      /* brand */
+  border-color: #0f766e;          /* brand */
+  color: #ffffff;                 /* on-brand */
+}
+
+.for-login .page-card .page-card-actions .btn-login:hover,
+.for-login .page-card .page-card-actions .btn-login:focus,
+.for-login .page-card .page-card-actions .btn-login:active,
+.for-forgot .page-card .page-card-actions .btn-login:hover,
+.for-forgot .page-card .page-card-actions .btn-login:focus,
+.for-forgot .page-card .page-card-actions .btn-login:active,
+.for-login-with-email-link .page-card .page-card-actions .btn-login:hover,
+.for-login-with-email-link .page-card .page-card-actions .btn-login:focus,
+.for-login-with-email-link .page-card .page-card-actions .btn-login:active,
+.for-signup .page-card .page-card-actions .btn-login:hover,
+.for-signup .page-card .page-card-actions .btn-login:focus,
+.for-signup .page-card .page-card-actions .btn-login:active,
+.for-email-login .page-card .page-card-actions .btn-login:hover,
+.for-email-login .page-card .page-card-actions .btn-login:focus,
+.for-email-login .page-card .page-card-actions .btn-login:active {
+  background-color: #0f4c46;      /* brand-strong */
+  border-color: #0f4c46;          /* brand-strong */
+}
+
+[data-theme="dark"] .for-login .page-card .page-card-actions .btn-login,
+[data-theme="dark"] .for-forgot .page-card .page-card-actions .btn-login,
+[data-theme="dark"] .for-login-with-email-link .page-card .page-card-actions .btn-login,
+[data-theme="dark"] .for-signup .page-card .page-card-actions .btn-login,
+[data-theme="dark"] .for-email-login .page-card .page-card-actions .btn-login {
+  background-color: #3cc3b0;      /* brand */
+  border-color: #3cc3b0;          /* brand */
+  color: #03201c;                 /* on-brand */
+}
+
+[data-theme="dark"] .for-login .page-card .page-card-actions .btn-login:hover,
+[data-theme="dark"] .for-login .page-card .page-card-actions .btn-login:focus,
+[data-theme="dark"] .for-login .page-card .page-card-actions .btn-login:active,
+[data-theme="dark"] .for-forgot .page-card .page-card-actions .btn-login:hover,
+[data-theme="dark"] .for-forgot .page-card .page-card-actions .btn-login:focus,
+[data-theme="dark"] .for-forgot .page-card .page-card-actions .btn-login:active,
+[data-theme="dark"] .for-login-with-email-link .page-card .page-card-actions .btn-login:hover,
+[data-theme="dark"] .for-login-with-email-link .page-card .page-card-actions .btn-login:focus,
+[data-theme="dark"] .for-login-with-email-link .page-card .page-card-actions .btn-login:active,
+[data-theme="dark"] .for-signup .page-card .page-card-actions .btn-login:hover,
+[data-theme="dark"] .for-signup .page-card .page-card-actions .btn-login:focus,
+[data-theme="dark"] .for-signup .page-card .page-card-actions .btn-login:active,
+[data-theme="dark"] .for-email-login .page-card .page-card-actions .btn-login:hover,
+[data-theme="dark"] .for-email-login .page-card .page-card-actions .btn-login:focus,
+[data-theme="dark"] .for-email-login .page-card .page-card-actions .btn-login:active {
+  background-color: #86e0d2;      /* brand-strong */
+  border-color: #86e0d2;          /* brand-strong */
+}
+
+/* stock dark redefines the chart variables on .chart-container (higher
+   specificity than any root block); mirror our values there */
+[data-theme="dark"] .chart-container {
+  --charts-label-color: #bccac6;         /* ink-soft */
+  --charts-axis-line-color: #263633;     /* line */
+  --charts-tooltip-bg: #142120;          /* surface */
+  --charts-tooltip-label: #bccac6;       /* ink-soft */
+  --charts-tooltip-title: #bccac6;       /* ink-soft */
+  --charts-tooltip-value: #eef4f2;       /* ink */
+  --charts-legend-label: #bccac6;        /* ink-soft */
+  --charts-legend-value: #bccac6;        /* ink-soft */
+  --charts-dataset-circle-stroke: #142120; /* surface */
+}
